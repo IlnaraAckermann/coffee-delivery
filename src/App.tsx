@@ -1,6 +1,7 @@
 import { ShoppingCartIcon } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "./components/Button";
 import { Flex } from "./components/Flex";
+import { Tag } from "./components/Tag";
 
 function App() {
 	return (
@@ -10,90 +11,117 @@ function App() {
 			padding="lg"
 			alignItems="center"
 			justifyContent="center"
-			className="h-screen"
 		>
-			<Button
-				variant="primary"
-				size="m"
+			<Flex
+				gap="md"
+				alignItems="center"
+				wrap
 			>
-				Primary Button
-			</Button>
-			<Button
-				variant="primary"
-				size="g"
-				disabled
+				<Tag
+					color="yellow"
+					iconName="Coffee"
+				/>
+				<Tag
+					color="yellow-dark"
+					iconName="Package"
+				/>
+				<Tag
+					color="purple"
+					iconName="ShoppingCart"
+				/>
+				<Tag
+					color="base"
+					iconName="MapPin"
+				/>
+			</Flex>
+			<Flex
+				gap="md"
+				alignItems="center"
+				wrap
 			>
-				Large Primary Button disabled
-			</Button>
-			<Button
-				variant="secondary"
-				size="m"
-			>
-				Secondary Button
-			</Button>
-			<Button
-				variant="secondary"
-				size="g"
-				disabled
-			>
-				Disabled Secondary Button
-			</Button>
-			<Button
-				variant="primary"
-				size="g"
-				loading
-			>
-				Loading Primary Button
-			</Button>
+				<Button
+					variant="primary"
+					size="m"
+				>
+					Primary Button
+				</Button>
+				<Button
+					variant="primary"
+					size="g"
+					disabled
+				>
+					Large Primary Button disabled
+				</Button>
+				<Button
+					variant="secondary"
+					size="m"
+				>
+					Secondary Button
+				</Button>
+				<Button
+					variant="secondary"
+					size="g"
+					disabled
+				>
+					Disabled Secondary Button
+				</Button>
+				<Button
+					variant="primary"
+					size="g"
+					loading
+				>
+					Loading Primary Button
+				</Button>
 
-			<Button
-				icon={
-					<ShoppingCartIcon
-						size={16}
-						weight="fill"
-					/>
-				}
-				variant="primary"
-				size="g"
-			/>
+				<Button
+					icon={
+						<ShoppingCartIcon
+							size={16}
+							weight="fill"
+						/>
+					}
+					variant="primary"
+					size="g"
+				/>
 
-			<Button
-				icon={
-					<ShoppingCartIcon
-						size={16}
-						weight="fill"
-					/>
-				}
-				variant="primary"
-				size="g"
-			/>
+				<Button
+					icon={
+						<ShoppingCartIcon
+							size={16}
+							weight="fill"
+						/>
+					}
+					variant="primary"
+					size="g"
+				/>
 
-			<Button
-				icon={
-					<ShoppingCartIcon
-						size={16}
-						weight="fill"
-						className="text-white"
-					/>
-				}
-				variant="tertiary"
-				size="g"
-			>
-				Button G with icon
-			</Button>
-			<Button
-				icon={
-					<ShoppingCartIcon
-						size={16}
-						weight="fill"
-						className="text-white"
-					/>
-				}
-				variant="tertiary"
-				size="m"
-			>
-				Button M with icon
-			</Button>
+				<Button
+					icon={
+						<ShoppingCartIcon
+							size={16}
+							weight="fill"
+							className="text-white"
+						/>
+					}
+					variant="tertiary"
+					size="g"
+				>
+					Button G with icon
+				</Button>
+				<Button
+					icon={
+						<ShoppingCartIcon
+							size={16}
+							weight="fill"
+							className="text-white"
+						/>
+					}
+					variant="tertiary"
+					size="m"
+				>
+					Button M with icon
+				</Button>
+			</Flex>
 		</Flex>
 	);
 }
