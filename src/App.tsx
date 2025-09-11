@@ -2,6 +2,7 @@ import { ShoppingCartIcon } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "./components/Button";
 import { Flex } from "./components/Flex";
 import { Tag } from "./components/Tag";
+import { Select } from "./components/Select";
 
 function App() {
 	return (
@@ -19,19 +20,19 @@ function App() {
 			>
 				<Tag
 					color="yellow"
-					iconName="Coffee"
+					iconProps={{ name: "Coffee" }}
 				/>
 				<Tag
 					color="yellow-dark"
-					iconName="Package"
+					iconProps={{ name: "Package" }}
 				/>
 				<Tag
 					color="purple"
-					iconName="ShoppingCart"
+					iconProps={{ name: "ShoppingCart" }}
 				/>
 				<Tag
 					color="base"
-					iconName="MapPin"
+					iconProps={{ name: "MapPin" }}
 				/>
 			</Flex>
 			<Flex
