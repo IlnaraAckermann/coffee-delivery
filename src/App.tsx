@@ -1,8 +1,17 @@
+import { ShoppingCartIcon } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "./components/Button";
+import { Flex } from "./components/Flex";
 
 function App() {
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-center bg-base-background p-4 gap-1.5">
+		<Flex
+			flexDirection="column"
+			gap="lg"
+			padding="lg"
+			alignItems="center"
+			justifyContent="center"
+			className="h-screen"
+		>
 			<Button
 				variant="primary"
 				size="m"
@@ -36,7 +45,56 @@ function App() {
 			>
 				Loading Primary Button
 			</Button>
-		</div>
+
+			<Button
+				icon={
+					<ShoppingCartIcon
+						size={16}
+						weight="fill"
+					/>
+				}
+				variant="primary"
+				size="g"
+			/>
+
+			<Button
+				icon={
+					<ShoppingCartIcon
+						size={16}
+						weight="fill"
+					/>
+				}
+				variant="primary"
+				size="g"
+			/>
+
+			<Button
+				icon={
+					<ShoppingCartIcon
+						size={16}
+						weight="fill"
+						className="text-white"
+					/>
+				}
+				variant="tertiary"
+				size="g"
+			>
+				Button G with icon
+			</Button>
+			<Button
+				icon={
+					<ShoppingCartIcon
+						size={16}
+						weight="fill"
+						className="text-white"
+					/>
+				}
+				variant="tertiary"
+				size="m"
+			>
+				Button M with icon
+			</Button>
+		</Flex>
 	);
 }
 
