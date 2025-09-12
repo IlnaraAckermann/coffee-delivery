@@ -13,6 +13,15 @@ function App() {
 			alignItems="center"
 			justifyContent="center"
 		>
+
+			<Flex
+				gap="md"
+				alignItems="center"
+				
+			>
+				<Select iconProps={{ name: "ShoppingCart" }} />
+			</Flex>
+
 			<Flex
 				gap="md"
 				alignItems="center"
