@@ -1,17 +1,32 @@
-import { Icon, type IconProps } from "../Icon";
+import { useRef } from "react";
 import { Flex } from "../Flex";
+import { Icon, type IconProps } from "../Icon";
 import { Text } from "../Text";
 
 interface SelectProps extends React.HTMLAttributes<HTMLInputElement> {
 	iconProps: IconProps;
 	className?: string;
+	label?: string;
+	value?: string;
+	checked?: boolean;
+	name?: string;
 }
-export const Select = ({ iconProps, ...props }: SelectProps) => {
+export const Select = ({
+	iconProps,
+	label = "Select",
+	checked,
+	...props
+}: SelectProps) => {
+	const inputRef = useRef<HTMLInputElement>(null);
+
 	return (
 		<Flex
 			alignItems="center"
 			justifyContent="center"
-			className="border border-base-button bg-base-button hover:bg-base-hover active:bg-purple-light active:border-purple hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer"
+			onClick={() => inputRef.current?.click()}
+			className={`border border-base-button bg-base-button hover:bg-base-hover  hover:not-:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer ${
+				checked ? "bg-purple-light! border-purple!" : ""
+			}`}
 		>
 			<Icon {...iconProps} />
 			<Text
@@ -20,11 +35,13 @@ export const Select = ({ iconProps, ...props }: SelectProps) => {
 				variant="button-m"
 				className="select-none"
 			>
-				Delivery
+				{label}
 			</Text>
 			<input
 				type="radio"
+				ref={inputRef}
 				{...props}
+				checked={checked}
 				className="hidden"
 			/>
 		</Flex>

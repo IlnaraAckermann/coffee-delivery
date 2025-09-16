@@ -2,7 +2,8 @@ import { ShoppingCartIcon } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "./components/Button";
 import { Flex } from "./components/Flex";
 import { Tag } from "./components/Tag";
-import { Select } from "./components/Select";
+import { GroupSelect } from "./components/SelectGroup";
+import Cart from "./components/Cart";
 
 function App() {
 	return (
@@ -13,13 +14,27 @@ function App() {
 			alignItems="center"
 			justifyContent="center"
 		>
-
+			<Cart	numberOfItems={3} />
 			<Flex
 				gap="md"
 				alignItems="center"
-				
 			>
-				<Select iconProps={{ name: "ShoppingCart" }} />
+				<GroupSelect
+					options={[
+						{
+							value: "creditCard",
+							label: "Credit Card",
+							iconProps: { name: "CreditCard" },
+						},
+						{
+							value: "paypal",
+							label: "PayPal",
+							iconProps: { name: "PaypalLogo" },
+						},
+					]}
+					name="paymentMethod"
+					onChange={(value) => console.log("Selected payment method:", value)}
+				/>
 			</Flex>
 
 			<Flex
