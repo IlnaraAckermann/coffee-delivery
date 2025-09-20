@@ -7,6 +7,7 @@ interface GroupSelectProps {
 	options: { value: string; label: string; iconProps: IconProps }[];
 	name: string;
 	flexDirection?: "row" | "column";
+	value?: string;
 	onChange?: (value: string) => void;
 	defaultValue?: string;
 }
@@ -15,14 +16,20 @@ export const GroupSelect = ({
 	options,
 	name,
 	flexDirection = "row",
+	value,
 	onChange,
 	defaultValue,
 }: GroupSelectProps) => {
-	const [selectedValue, setSelectedValue] = useState(defaultValue || "");
+	const [internalValue, setInternalValue] = useState(defaultValue || "");
 
-	const handleChange = (value: string) => {
-		setSelectedValue(value);
-		onChange?.(value);
+	const selectedValue = value !== undefined ? value : internalValue;
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const newValue = event.target.value;
+		if (value === undefined) {
+			setInternalValue(newValue);
+		}
+		onChange?.(newValue);
 	};
 
 	return (
@@ -38,7 +45,7 @@ export const GroupSelect = ({
 					value={option.value}
 					name={name}
 					checked={selectedValue === option.value}
-					onChange={() => handleChange(option.value)}
+					onChange={handleChange}
 				/>
 			))}
 		</Flex>

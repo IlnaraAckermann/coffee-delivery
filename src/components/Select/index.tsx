@@ -7,13 +7,14 @@ interface SelectProps extends React.HTMLAttributes<HTMLInputElement> {
 	iconProps: IconProps;
 	className?: string;
 	label?: string;
-	value?: string;
 	checked?: boolean;
+	value: string;
 	name?: string;
 }
 export const Select = ({
 	iconProps,
 	label = "Select",
+	className,
 	checked,
 	...props
 }: SelectProps) => {
@@ -24,9 +25,9 @@ export const Select = ({
 			alignItems="center"
 			justifyContent="center"
 			onClick={() => inputRef.current?.click()}
-			className={`border border-base-button bg-base-button hover:bg-base-hover  hover:not-:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer ${
+			className={`border border-base-button bg-base-button hover:bg-base-hover hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer ${
 				checked ? "bg-purple-light! border-purple!" : ""
-			}`}
+			} ${className}`}
 		>
 			<Icon {...iconProps} />
 			<Text
@@ -40,8 +41,8 @@ export const Select = ({
 			<input
 				type="radio"
 				ref={inputRef}
-				{...props}
 				checked={checked}
+				{...props}
 				className="hidden"
 			/>
 		</Flex>

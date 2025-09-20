@@ -4,6 +4,8 @@ import { Flex } from "./components/Flex";
 import { Tag } from "./components/Tag";
 import { GroupSelect } from "./components/SelectGroup";
 import Cart from "./components/Cart";
+import { Input } from "./components/Input";
+import { InputNumber } from "./components/InputNumber";
 
 function App() {
 	return (
@@ -14,7 +16,9 @@ function App() {
 			alignItems="center"
 			justifyContent="center"
 		>
-			<Cart	numberOfItems={3} />
+			<InputNumber />
+			<Input placeholder="Insira um texto" />
+			<Cart numberOfItems={3} />
 			<Flex
 				gap="md"
 				alignItems="center"
