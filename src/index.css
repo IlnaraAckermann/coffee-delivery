@@ -23,6 +23,7 @@
   --font-baloo: 'Baloo 2', cursive;
   --font-roboto: 'Roboto', sans-serif;
 
+  --breakpoint-l: 70rem;
 }
 
 @layer components {

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import PageComponents from "./pages/PageComponents";
 import DefaultLayout from "./layouts/DefaultLayout";
+import { Home } from "./pages/Home";
 
 export function Router() {
 	return (
@@ -11,6 +12,10 @@ export function Router() {
 			>
 				<Route
 					path="/"
+					element={<Home />}
+				/>
+				<Route
+					path="/components"
 					element={<PageComponents />}
 				/>
 			</Route>

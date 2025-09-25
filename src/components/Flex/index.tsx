@@ -1,14 +1,17 @@
 import type { VariantProps } from "tailwind-variants";
 import { flexVariants } from "./variants";
+import { createElement } from "react";
 
-interface FlexProps
-	extends React.HTMLAttributes<HTMLDivElement>,
+interface FlexProps<T extends React.ElementType = "div">
+	extends React.HTMLAttributes<T>,
 		VariantProps<typeof flexVariants> {
+	as?: T;
 	children?: React.ReactNode;
 	className?: string;
 }
 
-export const Flex = ({
+export const Flex = <T extends React.ElementType = "div">({
+	as,
 	children,
 	flexDirection,
 	justifyContent,
@@ -19,10 +22,11 @@ export const Flex = ({
 	margin,
 	className,
 	...props
-}: FlexProps) => {
-	return (
-		<div
-			className={flexVariants({
+}: FlexProps<T>) => {
+	return createElement(
+		as || "div",
+		{
+			className: flexVariants({
 				flexDirection,
 				justifyContent,
 				alignItems,
@@ -31,11 +35,9 @@ export const Flex = ({
 				padding,
 				margin,
 				className,
-			})}
-			{...props}
-		>
-			{children}
-		</div>
+			}),
+			...props,
+		},
+		children
 	);
 };
- 
