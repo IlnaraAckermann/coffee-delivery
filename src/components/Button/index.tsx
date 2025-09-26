@@ -1,6 +1,6 @@
 import type { VariantProps } from "tailwind-variants";
 import { buttonVariants } from "./variants";
-import { Text } from "../Text";
+import { Text } from "@components/Text";
 
 interface ButtonProps
 	extends VariantProps<typeof buttonVariants>,

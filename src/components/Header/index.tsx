@@ -1,5 +1,5 @@
-import CoffeDeliveryLogo from "../../assets/images/Logo.png";
-import { Flex } from "../Flex";
+import CoffeDeliveryLogo from "@images/Logo.png";
+import { Flex } from "@components/Flex";
 import { CartStatus } from "./components/CartStatus";
 import { Location } from "./components/Location";
 

@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { Flex } from "../Flex";
-import { Icon, type IconProps } from "../Icon";
-import { Text } from "../Text";
+import { Flex } from "@components/Flex";
+import { Icon, type IconProps } from "@components/Icon";
+import { Text } from "@components/Text";
 
 interface SelectProps extends React.HTMLAttributes<HTMLInputElement> {
 	iconProps: IconProps;

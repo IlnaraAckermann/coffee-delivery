@@ -1,6 +1,6 @@
 import { MapPinIcon } from "@phosphor-icons/react";
-import { Flex } from "../../Flex";
-import { Text } from "../../Text";
+import { Flex } from "@components/Flex";
+import { Text } from "@components/Text";
 
 export const Location = () => {
 	return (

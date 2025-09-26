@@ -1,5 +1,5 @@
 import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
-import { Flex } from "../Flex";
+import { Flex } from "@components/Flex";
 import React from "react";
 
 interface InputNumberProps extends React.InputHTMLAttributes<HTMLInputElement> {

@@ -1,11 +1,11 @@
 import { Flex } from "../components/Flex";
 import { ShoppingCartIcon } from "@phosphor-icons/react";
-import { Button } from "../components/Button";
-import Cart from "../components/Cart";
-import { Input } from "../components/Input";
-import { InputNumber } from "../components/InputNumber";
-import { GroupSelect } from "../components/SelectGroup";
-import { Tag } from "../components/Tag";
+import { Button } from "@components/Button";
+import Cart from "@components/Cart";
+import { Input } from "@components/Input";
+import { InputNumber } from "@components/InputNumber";
+import { GroupSelect } from "@components/SelectGroup";
+import { Tag } from "@components/Tag";
 
 export default function MyComponents() {
 	document.title = "Componentes - Coffee Delivery";

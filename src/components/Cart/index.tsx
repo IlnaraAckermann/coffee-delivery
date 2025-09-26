@@ -1,6 +1,6 @@
-import { Flex } from "../Flex";
-import { Icon } from "../Icon";
-import { Text } from "../Text";
+import { Flex } from "@components/Flex";
+import { Icon } from "@components/Icon";
+import { Text } from "@components/Text";
 
 interface CartProps {
 	numberOfItems?: number;

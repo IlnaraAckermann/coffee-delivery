@@ -1,8 +1,8 @@
 import type { VariantProps } from "tailwind-variants";
 import { tagsVariants } from "./variants";
-import { Flex } from "../Flex";
-import { Icon, type IconProps } from "../Icon";
-import { Text } from "../Text";
+import { Flex } from "@components/Flex";
+import { Icon, type IconProps } from "@components/Icon";
+import { Text } from "@components/Text";
 
 interface TagProps extends VariantProps<typeof tagsVariants> {
 	className?: string;

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { Flex } from "../components/Flex";
-import { Header } from "../components/Header";
+import { Flex } from "@components/Flex";
+import { Header } from "@components/Header";
 
 export default function DefaultLayout() {
 	return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { type IconProps } from "../Icon";
-import { Flex } from "../Flex";
-import { Select } from "../Select";
+import { type IconProps } from "@components/Icon";
+import { Flex } from "@components/Flex";
+import { Select } from "@components/Select";
 
 interface GroupSelectProps {
 	options: { value: string; label: string; iconProps: IconProps }[];

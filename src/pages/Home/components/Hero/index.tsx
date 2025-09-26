@@ -1,7 +1,7 @@
-import { Flex } from "../../../../components/Flex";
-import HeroImage from "../../../../assets/images/Hero-Imagem.png";
-import { Text } from "../../../../components/Text";
-import { Tag } from "../../../../components/Tag";
+import { Flex } from "@components/Flex";
+import HeroImage from "@images/Hero-Imagem.png";
+import { Text } from "@components/Text";
+import { Tag } from "@components/Tag";
 
 export const Hero = () => {
 	return (
@@ -31,22 +31,22 @@ export const Hero = () => {
 				<Flex className="mt-16 grid grid-cols-1 gap-4 l:grid-cols-2">
 					<Tag
 						color="yellow-dark"
-						iconProps={{ name: "ShoppingCart" }}
+						iconProps={{ name: "ShoppingCart", weight: "fill" }}
 						text="Compra simples e segura"
 					/>
 					<Tag
 						color="base"
-						iconProps={{ name: "Package" }}
+						iconProps={{ name: "Package", weight: "fill" }}
 						text="Embalagem mantém o café intacto"
 					/>
 					<Tag
 						color="yellow"
-						iconProps={{ name: "Timer" }}
+						iconProps={{ name: "Timer", weight: "fill" }}
 						text="Entrega rápida e rastreada"
 					/>
 					<Tag
 						color="purple"
-						iconProps={{ name: "Coffee" }}
+						iconProps={{ name: "Coffee", weight: "fill" }}
 						text="O café chega fresquinho até você"
 					/>
 				</Flex>
