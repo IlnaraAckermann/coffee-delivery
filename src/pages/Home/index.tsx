@@ -1,4 +1,4 @@
-import { CoffeeCard } from "./components/CoffeeCard";
+import CoffeeList from "./components/CoffeeList";
 import { Hero } from "./components/Hero";
 
 export const Home = () => {
@@ -6,7 +6,7 @@ export const Home = () => {
 		<>
 			<Hero />
 			{/* <CoffeeList /> */}
-			<CoffeeCard />
+			<CoffeeList />
 		</>
 	);
 };
