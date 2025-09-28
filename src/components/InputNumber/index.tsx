@@ -1,6 +1,7 @@
 import { MinusIcon, PlusIcon } from "@phosphor-icons/react";
 import { Flex } from "@components/Flex";
 import React from "react";
+import { tv } from "tailwind-variants";
 
 interface InputNumberProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	className?: string;
@@ -29,6 +30,9 @@ export const InputNumber = ({ className, ...props }: InputNumberProps) => {
 		}
 	};
 
+	const baseInputClass = tv({
+		base: "no-spinner w-10 bg-base-input border-none outline-0 rounded-md py-2 text-base-text text-center",
+	});
 	return (
 		<Flex
 			alignItems="center"
@@ -43,9 +47,7 @@ export const InputNumber = ({ className, ...props }: InputNumberProps) => {
 			<input
 				type="number"
 				defaultValue={0}
-				className={`no-spinner  w-10 bg-base-input border-none outline-0 rounded-md py-2 text-base-text  text-center ${
-					className ? className : ""
-				} `}
+				className={baseInputClass({ className })}
 				{...props}
 				ref={inputRef}
 			/>

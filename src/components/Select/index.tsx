@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Flex } from "@components/Flex";
 import { Icon, type IconProps } from "@components/Icon";
 import { Text } from "@components/Text";
+import { tv } from "tailwind-variants";
 
 interface SelectProps extends React.HTMLAttributes<HTMLInputElement> {
 	iconProps: IconProps;
@@ -20,14 +21,22 @@ export const Select = ({
 }: SelectProps) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
+	const baseClass = tv({
+		base: "border border-base-button bg-base-button hover:bg-base-hover hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer",
+		variants: {
+			isChecked: {
+				true: "bg-purple-light! border-purple!",
+				false: "",
+			},
+		},
+	});
+
 	return (
 		<Flex
 			alignItems="center"
 			justifyContent="center"
 			onClick={() => inputRef.current?.click()}
-			className={`border border-base-button bg-base-button hover:bg-base-hover hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer ${
-				checked ? "bg-purple-light! border-purple!" : ""
-			} ${className}`}
+			className={baseClass({ isChecked: checked, className })}
 		>
 			<Icon {...iconProps} />
 			<Text
