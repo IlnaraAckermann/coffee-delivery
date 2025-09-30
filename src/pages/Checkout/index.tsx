@@ -34,17 +34,16 @@ export const Checkout = () => {
 				<Input
 					name="cep"
 					placeholder="CEP"
-					className="max-w-[200px]"
-					width="w-fit"
+					className="xl:max-w-[200px]"
 				/>
 				<Input
 					name="street"
 					placeholder="Rua"
 				/>
 				<Flex
-					gap="md"
 					flexDirection="column"
-					className="md:flex-row w-full"
+					className="sm:flex-row gap-4"
+					flexGrow
 				>
 					<Input
 						name="number"
@@ -53,13 +52,14 @@ export const Checkout = () => {
 					<Input
 						name="complement"
 						placeholder="Complemento"
-						width="w-3/4"
+						className="sm:w-3/4"
+						isOptional
 					/>
 				</Flex>
 				<Flex
-					gap="md"
 					flexDirection="column"
-					className="md:flex-row"
+					className="sm:flex-row gap-4"
+					flexGrow
 				>
 					<Input
 						name="neighborhood"
