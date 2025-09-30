@@ -1,11 +1,29 @@
+import { Text } from "@components/Text";
 import { useRef, useState } from "react";
-import { tv } from "tailwind-variants";
+import { baseInputClass, containerVariants } from "./variants";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	className?: string;
+	isMandatory?: boolean;
+	width?:
+		| "w-full"
+		| "w-fit"
+		| "w-1/2"
+		| "w-1/3"
+		| "w-2/3"
+		| "w-3/4"
+		| "w-1/4"
+		| "w-auto";
 }
 
-export const Input = ({ className, value, onChange, ...props }: InputProps) => {
+export const Input = ({
+	className,
+	value,
+	onChange,
+	isMandatory,
+	width = "w-auto",
+	...props
+}: InputProps) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const [internalValue, setInternalValue] = useState("");
@@ -14,28 +32,28 @@ export const Input = ({ className, value, onChange, ...props }: InputProps) => {
 
 	const isFilled = !!currentValue;
 
-	const baseClass = tv({
-		base: `p-2 border border-base-button bg-base-input rounded placeholder-base-label focus:outline-none focus:ring-1 focus:ring-yellow `,
-		variants: {
-			isFilled: {
-				true: "focus:ring-yellow-dark",
-				false: "",
-			},
-		},
-	});
-
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (onChange) onChange(e);
 		if (value === undefined) setInternalValue(e.target.value);
 	};
 
 	return (
-		<input
-			ref={inputRef}
-			className={baseClass({ className, isFilled })}
-			onChange={handleChange}
-			value={currentValue}
-			{...props}
-		/>
+		<div className={containerVariants({ width })}>
+			<input
+				ref={inputRef}
+				className={baseInputClass({ className, isFilled })}
+				onChange={handleChange}
+				value={currentValue}
+				{...props}
+			/>
+			{!isMandatory && (
+				<Text
+					variant="text-s"
+					className=" text-base-label italic absolute right-2 translate-y-1/2"
+				>
+					Opcional
+				</Text>
+			)}
+		</div>
 	);
 };
