@@ -1,10 +1,11 @@
 import { Input } from "@components/Input";
 import { FieldSet } from "./components/FieldSet";
-import { MapPinLineIcon } from "@phosphor-icons/react";
+import { CurrencyDollarIcon, MapPinLineIcon } from "@phosphor-icons/react";
 import { Flex } from "@components/Flex";
 import { Text } from "@components/Text";
 import { TextValue } from "./components/TextValue";
 import { CheckoutCoffeeCard } from "./components/CheckoutCoffeeCard";
+import { GroupSelect } from "@components/SelectGroup";
 
 export const Checkout = () => {
 	return (
@@ -12,75 +13,125 @@ export const Checkout = () => {
 			id="checkout-form"
 			className="p-10 w-full gap-8 flex flex-col l:flex-row"
 		>
-			<FieldSet
-				legend="Complete seu pedido"
+			<Flex
+				flexDirection="column"
+				gap="lg"
 				className="flex-3 h-fit"
 			>
-				<Flex
-					flexDirection="column"
-					gap="sm"
-				>
-					<Flex alignItems="center">
-						<MapPinLineIcon className="text-yellow-dark" />
+				<FieldSet legend="Complete seu pedido">
+					<Flex
+						flexDirection="column"
+						gap="sm"
+					>
+						<Flex alignItems="center">
+							<MapPinLineIcon className="text-yellow-dark" />
+							<Text
+								variant="text-m"
+								className="ml-2 text-base-subtitle"
+							>
+								Endereço de entrega
+							</Text>
+						</Flex>
 						<Text
-							variant="text-m"
-							className="ml-2 text-base-subtitle"
+							variant="text-s"
+							className="text-base-subtitle ml-6"
 						>
-							Endereço de entrega
+							Informe o endereço onde deseja receber seu pedido
 						</Text>
 					</Flex>
-					<Text
-						variant="text-s"
-						className="text-base-subtitle ml-6"
+					<Input
+						name="cep"
+						placeholder="CEP"
+						className="xl:max-w-[200px]"
+					/>
+					<Input
+						name="street"
+						placeholder="Rua"
+					/>
+					<Flex
+						flexDirection="column"
+						className="sm:flex-row gap-4"
+						flexGrow
 					>
-						Informe o endereço onde deseja receber seu pedido
-					</Text>
-				</Flex>
-				<Input
-					name="cep"
-					placeholder="CEP"
-					className="xl:max-w-[200px]"
-				/>
-				<Input
-					name="street"
-					placeholder="Rua"
-				/>
-				<Flex
-					flexDirection="column"
-					className="sm:flex-row gap-4"
-					flexGrow
-				>
-					<Input
-						name="number"
-						placeholder="Número"
-					/>
-					<Input
-						name="complement"
-						placeholder="Complemento"
-						className="sm:w-3/4"
-						isOptional
-					/>
-				</Flex>
-				<Flex
-					flexDirection="column"
-					className="sm:flex-row gap-4"
-					flexGrow
-				>
-					<Input
-						name="neighborhood"
-						placeholder="Bairro"
-					/>
-					<Input
-						name="city"
-						placeholder="Cidade"
-					/>
-					<Input
-						name="state"
-						placeholder="UF"
-					/>
-				</Flex>
-			</FieldSet>
+						<Input
+							name="number"
+							placeholder="Número"
+						/>
+						<Input
+							name="complement"
+							placeholder="Complemento"
+							className="sm:w-3/4"
+							isOptional
+						/>
+					</Flex>
+					<Flex
+						flexDirection="column"
+						className="sm:flex-row gap-4"
+						flexGrow
+					>
+						<Input
+							name="neighborhood"
+							placeholder="Bairro"
+						/>
+						<Input
+							name="city"
+							placeholder="Cidade"
+						/>
+						<Input
+							name="state"
+							placeholder="UF"
+						/>
+					</Flex>
+				</FieldSet>
 
+				<FieldSet className="flex-3 h-fit w-full mt-4 l:mt-0">
+					<Flex
+						flexDirection="column"
+						gap="sm"
+					>
+						<Flex alignItems="center">
+							<CurrencyDollarIcon className="text-purple" />
+							<Text
+								variant="text-m"
+								className="ml-2 text-base-subtitle"
+							>
+								Pagamento
+							</Text>
+						</Flex>
+						<Text
+							variant="text-s"
+							className="text-base-subtitle ml-6"
+						>
+							O pagamento é feito na entrega. Escolha a forma que deseja pagar
+						</Text>
+
+						<GroupSelect
+							options={[
+								{
+									value: "creditCard",
+									label: "Cartão de crédito",
+									iconProps: { name: "CreditCard" },
+								},
+								{
+									value: "debitCard",
+									label: "Cartão de débito",
+									iconProps: { name: "Bank" },
+								},
+								{
+									value: "cash",
+									label: "Dinheiro",
+									iconProps: { name: "Money" },
+								},
+							]}
+							name="paymentMethod"
+							onChange={(value) =>
+								console.log("Selected payment method:", value)
+							}
+							classname="mt-8"
+						/>
+					</Flex>
+				</FieldSet>
+			</Flex>
 			<FieldSet
 				legend="Cafés selecionados"
 				className="flex-2 h-fit gap-1"

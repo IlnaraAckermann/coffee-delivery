@@ -22,7 +22,7 @@ export const Select = ({
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const baseClass = tv({
-		base: "border border-base-button bg-base-button hover:bg-base-hover hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer",
+		base: "border border-base-button bg-base-button hover:bg-base-hover hover:border-base-hover rounded-md px-3 py-2 gap-2 text-purple w-44 cursor-pointer h-14",
 		variants: {
 			isChecked: {
 				true: "bg-purple-light! border-purple!",

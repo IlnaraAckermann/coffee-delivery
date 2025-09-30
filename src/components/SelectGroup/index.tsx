@@ -10,6 +10,7 @@ interface GroupSelectProps {
 	value?: string;
 	onChange?: (value: string) => void;
 	defaultValue?: string;
+	classname?: string;
 }
 
 export const GroupSelect = ({
@@ -19,6 +20,7 @@ export const GroupSelect = ({
 	value,
 	onChange,
 	defaultValue,
+	classname,
 }: GroupSelectProps) => {
 	const [internalValue, setInternalValue] = useState(defaultValue || "");
 
@@ -36,6 +38,7 @@ export const GroupSelect = ({
 		<Flex
 			flexDirection={flexDirection}
 			gap="md"
+			className={classname}
 		>
 			{options.map((option) => (
 				<Select

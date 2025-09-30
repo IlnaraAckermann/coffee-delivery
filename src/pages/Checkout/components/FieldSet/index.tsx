@@ -7,7 +7,7 @@ interface FieldSetProps
 		React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
 		HTMLFieldSetElement
 	> {
-	legend: string;
+	legend?: string;
 	children?: React.ReactNode;
 	className?: string;
 }
