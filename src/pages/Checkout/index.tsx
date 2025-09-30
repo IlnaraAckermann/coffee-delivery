@@ -3,14 +3,19 @@ import { FieldSet } from "./components/FieldSet";
 import { MapPinLineIcon } from "@phosphor-icons/react";
 import { Flex } from "@components/Flex";
 import { Text } from "@components/Text";
+import { TextValue } from "./components/TextValue";
+import { CheckoutCoffeeCard } from "./components/CheckoutCoffeeCard";
 
 export const Checkout = () => {
 	return (
 		<form
 			id="checkout-form"
-			className="p-10 w-full max-w-3xl gap-8 flex flex-col lg:flex-row"
+			className="p-10 w-full gap-8 flex flex-col l:flex-row"
 		>
-			<FieldSet legend="Complete seu pedido">
+			<FieldSet
+				legend="Complete seu pedido"
+				className="flex-3 h-fit"
+			>
 				<Flex
 					flexDirection="column"
 					gap="sm"
@@ -76,7 +81,31 @@ export const Checkout = () => {
 				</Flex>
 			</FieldSet>
 
-			<FieldSet legend="Cafés selecionados"></FieldSet>
+			<FieldSet
+				legend="Cafés selecionados"
+				className="flex-2 h-fit gap-1"
+			>
+				<CheckoutCoffeeCard />
+				<hr className="my-2 border-t border-base-button" />
+				<CheckoutCoffeeCard />
+				<hr className="my-2 border-t border-base-button" />
+				<CheckoutCoffeeCard />
+				<hr className="my-2 border-t border-base-button" />
+				<TextValue
+					text="Total de itens"
+					value="R$ 29,70"
+					className="mt-4"
+				/>
+				<TextValue
+					text="Entrega"
+					value="R$ 3,50"
+				/>
+				<TextValue
+					text="Total"
+					value="R$ 33,20"
+					className="font-bold text-xl"
+				/>
+			</FieldSet>
 		</form>
 	);
 };

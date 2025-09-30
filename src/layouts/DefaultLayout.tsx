@@ -8,7 +8,7 @@ export default function DefaultLayout() {
 			flexDirection="column"
 			alignItems="center"
 			margin="none"
-			className="min-h-screen max-w-6xl p-8 mx-auto"
+			className="min-h-screen max-w-[100rem] p-8 mx-auto "
 		>
 			<Header />
 			<Outlet />

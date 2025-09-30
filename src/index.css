@@ -24,6 +24,7 @@
   --font-roboto: 'Roboto', sans-serif;
 
   --breakpoint-l: 70rem;
+  --breakpoint-xl: 80rem;
 }
 
 @layer components {
