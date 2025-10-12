@@ -6,18 +6,14 @@ import { TrashIcon } from "@phosphor-icons/react";
 
 export const CheckoutCoffeeCard = () => {
 	return (
-		<Flex className="w-full p-6 bg-base-card rounded-md gap-4">
+		<Flex className="p-6 rounded-md gap-4 w-full contain-content">
 			<img
 				src="src/assets/images/arabe.png"
-        alt="Café Arabe"
-        className="w-16 h-16"
+				alt="Café Arabe"
+				className="w-16 h-16"
 			/>
-			<Flex
-				flexDirection="column"
-				gap="sm"
-        flexGrow
-			>
-				<Flex gap="md" justifyContent="between">
+			<div className="w-full min-w-fit">
+				<Flex className="justify-between w-full gap-2">
 					<Text>Expresso Tradicional</Text>
 					<Text className="font-bold">R$ 9,90</Text>
 				</Flex>
@@ -31,7 +27,7 @@ export const CheckoutCoffeeCard = () => {
 						Remover
 					</Button>
 				</Flex>
-			</Flex>
+			</div>
 		</Flex>
 	);
 };

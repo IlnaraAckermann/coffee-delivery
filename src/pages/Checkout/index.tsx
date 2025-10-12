@@ -16,9 +16,12 @@ export const Checkout = () => {
 			<Flex
 				flexDirection="column"
 				gap="lg"
-				className="flex-3 h-fit"
+				className="h-fit grow order-2 l:order-1"
 			>
-				<FieldSet legend="Complete seu pedido">
+				<FieldSet
+					className="h-fit w-full mt-4 "
+					legend="Complete seu pedido"
+				>
 					<Flex
 						flexDirection="column"
 						gap="sm"
@@ -42,7 +45,7 @@ export const Checkout = () => {
 					<Input
 						name="cep"
 						placeholder="CEP"
-						className="xl:max-w-[200px]"
+						className="l:max-w-[200px]"
 					/>
 					<Input
 						name="street"
@@ -68,6 +71,7 @@ export const Checkout = () => {
 						flexDirection="column"
 						className="sm:flex-row gap-4"
 						flexGrow
+						wrap
 					>
 						<Input
 							name="neighborhood"
@@ -84,7 +88,7 @@ export const Checkout = () => {
 					</Flex>
 				</FieldSet>
 
-				<FieldSet className="flex-3 h-fit w-full mt-4 l:mt-0">
+				<FieldSet className="h-fit w-full mt-4">
 					<Flex
 						flexDirection="column"
 						gap="sm"
@@ -132,9 +136,10 @@ export const Checkout = () => {
 					</Flex>
 				</FieldSet>
 			</Flex>
+
 			<FieldSet
 				legend="Cafés selecionados"
-				className="flex-2 h-fit gap-1"
+				className="min-w-[450px] mt-4 order-1 l:order-2"
 			>
 				<CheckoutCoffeeCard />
 				<hr className="my-2 border-t border-base-button" />
