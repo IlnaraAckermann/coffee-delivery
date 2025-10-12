@@ -3,31 +3,34 @@ import { tagsVariants } from "./variants";
 import { Flex } from "@components/Flex";
 import { Icon, type IconProps } from "@components/Icon";
 import { Text } from "@components/Text";
+import type { ReactNode } from "react";
 
 interface TagProps extends VariantProps<typeof tagsVariants> {
 	className?: string;
 	iconProps: IconProps;
-	text?: string;
+	text?: string | ReactNode;
 }
 
 export const Tag = ({ className, color, iconProps, text }: TagProps) => {
 	return (
-		<div>
+		<Flex alignItems="center">
 			<Flex
-				className={tagsVariants({ className, color })}
+				className={tagsVariants({ className, color })} 
 				alignItems="center"
 				justifyContent="center"
 			>
 				{iconProps.name && <Icon {...iconProps} />}
 			</Flex>
-			{text && (
-				<Text
-					variant="text-m"
-					className="ml-2"
-				>
-					{text}
-				</Text>
-			)}
-		</div>
+			{text &&
+				(typeof text === "string" ? (
+					<Text
+						variant="text-m"
+					>
+						{text}
+					</Text>
+				) : (
+					text
+				))}
+		</Flex>
 	);
 };

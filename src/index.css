@@ -24,6 +24,9 @@
   --font-roboto: 'Roboto', sans-serif;
 
   --breakpoint-l: 76rem;
+
+  --border-image-degrade: linear-gradient(90deg, var(--color-yellow), var(--color-purple));
+  --custom-radius: 6px 36px;
 }
 
 @layer components {
@@ -36,4 +39,21 @@
     margin: 0;
     -webkit-appearance: none;
   }
+
+  .custom-border {
+    border-radius: var(--custom-radius);
+    padding: 1px !important;
+    background-image: var(--border-image-degrade)
+  }
+
+  .inner {
+    border-radius: var(--custom-radius);
+    background-color: var(--color-white);
+    padding: 2.5rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap:2rem;
+  }
+
 }
