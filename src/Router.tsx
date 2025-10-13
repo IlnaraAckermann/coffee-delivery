@@ -3,8 +3,7 @@ import PageComponents from "./pages/PageComponents";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { Home } from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Checkout } from "./pages/Checkout";
-import { OrderSuccessMessage } from "./pages/Order";
+import { Checkout } from "./pages/Checkout/components";
 
 const queryClient = new QueryClient();
 export function Router() {
@@ -26,10 +25,6 @@ export function Router() {
 					<Route
 						path="/checkout"
 						element={<Checkout />}
-					/>
-					<Route
-						path="/order/:id/success"
-						element={<OrderSuccessMessage />}
 					/>
 				</Route>
 			</Routes>

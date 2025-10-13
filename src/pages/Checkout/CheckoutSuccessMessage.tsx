@@ -3,7 +3,7 @@ import { Tag } from "@components/Tag";
 import { Text } from "@components/Text";
 import ManOnTheWay from "@images/man-on-the-way.png";
 
-export const OrderSuccessMessage = () => {
+export const CheckoutSuccessMessage = () => {
 	return (
 		<Flex className="flex-col l:flex-row l:gap-24 items-center gap-8 mt-10 l:items-end">
 			<div>

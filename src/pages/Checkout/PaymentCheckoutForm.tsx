@@ -6,12 +6,22 @@ import { Text } from "@components/Text";
 import { TextValue } from "./components/TextValue";
 import { CheckoutCoffeeCard } from "./components/CheckoutCoffeeCard";
 import { GroupSelect } from "@components/SelectGroup";
+import { Button } from "@components/Button";
 
-export const Checkout = () => {
+export const PaymentCheckoutForm = ({
+	onSuccess,
+}: {
+	onSuccess: () => void;
+}) => {
+	const handleSubmit = (event: React.FormEvent) => {
+		event.preventDefault();
+		onSuccess();
+	};
 	return (
 		<form
 			id="checkout-form"
 			className="p-10 w-full gap-8 flex flex-col l:flex-row"
+			onSubmit={handleSubmit}
 		>
 			<Flex
 				flexDirection="column"
@@ -161,6 +171,15 @@ export const Checkout = () => {
 					value="R$ 33,20"
 					className="font-bold text-xl"
 				/>
+
+				<Button
+					type="submit"
+					size="g"
+					form="checkout-form"
+					className="text-center mt-6"
+				>
+					CONFIRMAR PEDIDO
+				</Button>
 			</FieldSet>
 		</form>
 	);
