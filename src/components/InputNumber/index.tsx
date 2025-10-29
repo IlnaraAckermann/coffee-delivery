@@ -7,27 +7,34 @@ interface InputNumberProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	className?: string;
 }
 
-export const InputNumber = ({ className, ...props }: InputNumberProps) => {
-	const inputRef = React.useRef<HTMLInputElement>(null);
-
+export const InputNumber = ({
+	className,
+	value,
+	onChange,
+	...props
+}: InputNumberProps) => {
 	const handleDecrement = () => {
-		const input = inputRef.current;
-		if (input) {
-			const currentValue = parseInt(input.value) || 0;
-			const step = parseInt(input.step) || 1;
-			input.value = Math.max(0, currentValue - step).toString();
-			input.dispatchEvent(new Event("input", { bubbles: true })); // To trigger any onChange handlers
-		}
+		const currentValue = Number(value) || 0;
+		const step = Number(props.step) || 1;
+		const newValue = Math.max(0, currentValue - step);
+		const event = {
+			target: { value: newValue.toString(), valueAsNumber: newValue },
+			currentTarget: { value: newValue.toString(), valueAsNumber: newValue },
+			type: "change",
+		} as React.ChangeEvent<HTMLInputElement>;
+		onChange?.(event);
 	};
 
 	const handleIncrement = () => {
-		const input = inputRef.current;
-		if (input) {
-			const currentValue = parseInt(input.value) || 0;
-			const step = parseInt(input.step) || 1;
-			input.value = (currentValue + step).toString();
-			input.dispatchEvent(new Event("input", { bubbles: true }));
-		}
+		const currentValue = Number(value) || 0;
+		const step = Number(props.step) || 1;
+		const newValue = currentValue + step;
+		const event = {
+			target: { value: newValue.toString(), valueAsNumber: newValue },
+			currentTarget: { value: newValue.toString(), valueAsNumber: newValue },
+			type: "change",
+		} as React.ChangeEvent<HTMLInputElement>;
+		onChange?.(event);
 	};
 
 	const baseInputClass = tv({
@@ -46,10 +53,10 @@ export const InputNumber = ({ className, ...props }: InputNumberProps) => {
 			/>
 			<input
 				type="number"
-				defaultValue={0}
+				value={value ?? 0}
 				className={baseInputClass({ className })}
+				onChange={onChange}
 				{...props}
-				ref={inputRef}
 			/>
 			<PlusIcon
 				size={16}

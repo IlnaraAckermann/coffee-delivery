@@ -3,6 +3,7 @@ import { CoffeeLabel } from "./components/CoffeeLabel";
 import { Text } from "@components/Text";
 import { Form } from "./components/Form";
 import type { Coffee } from "src/types/coffee.dto";
+import { useCoffeeOrders } from "../../../../contexts/CartContext";
 
 interface CoffeeCardProps {
 	coffee: Coffee;
@@ -13,6 +14,15 @@ const getCoffeeImageUrl = (name: string) => {
 };
 
 export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
+	const { addOrUpdateCoffeeOrder, coffeeOrders } = useCoffeeOrders();
+
+	const handleAddToCart = (quantity: number) => {
+		addOrUpdateCoffeeOrder(coffee, quantity);
+	};
+	const currentOrder = coffeeOrders.find(
+		(order) => order.coffee.id === coffee.id
+	);
+
 	return (
 		<Flex
 			className="bg-base-card rounded-bl-4xl rounded-br-md rounded-tr-4xl rounded-tl-md  shadow-md w-3xs h-80 relative mt-16"
@@ -48,7 +58,11 @@ export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
 					{coffee.description}
 				</Text>
 			</Flex>
-			<Form price={coffee.price} />
+			<Form
+				price={coffee.price}
+				addToCart={handleAddToCart}
+				currentOrderQuantity={currentOrder?.quantity ?? 0}
+			/>
 		</Flex>
 	);
 };

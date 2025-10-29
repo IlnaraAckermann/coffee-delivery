@@ -4,12 +4,16 @@ import { Text } from "@components/Text";
 
 interface ButtonProps
 	extends VariantProps<typeof buttonVariants>,
-		Omit<React.ComponentProps<"button">, "size" | "disabled"> {
+		Omit<
+			React.ComponentProps<"button">,
+			"size" | "disabled" | "children" | "icon" | "className" | "variant"
+		> {
 	variant?: "primary" | "secondary" | "tertiary";
 	size?: "g" | "m";
 	loading?: boolean;
 	disabled?: boolean;
 	children?: React.ReactNode;
+	className?: string;
 	icon?: React.ReactNode;
 }
 
@@ -20,11 +24,21 @@ export const Button = ({
 	loading,
 	disabled,
 	icon,
+	className,
+	...props
 }: ButtonProps) => {
+	const finalClassName = `${buttonVariants({
+		variant,
+		size,
+		loading,
+		disabled,
+	})}${className ? ` ${className}` : ""}`.trim();
+
 	return (
 		<button
-			className={buttonVariants({ variant, size, loading, disabled })}
+			className={finalClassName}
 			disabled={disabled || loading}
+			{...props}
 		>
 			{icon}
 			{children && (

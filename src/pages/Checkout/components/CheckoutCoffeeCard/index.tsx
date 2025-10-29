@@ -24,7 +24,7 @@ export const CheckoutCoffeeCard = () => {
 						className="text-sm"
 						icon={<TrashIcon size={16} />}
 					>
-						Remover
+						REMOVER
 					</Button>
 				</Flex>
 			</div>

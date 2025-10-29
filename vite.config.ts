@@ -10,6 +10,7 @@ export default defineConfig({
 		alias: {
 			"@images": "/src/assets/images",
 			"@components": "/src/components",
+			"@contexts": "/src/contexts",
 		},
 	},
 });

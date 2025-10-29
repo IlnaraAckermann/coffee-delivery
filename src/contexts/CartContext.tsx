@@ -22,8 +22,12 @@ export const useCoffeeOrders = create<CoffeeOrdersState>()(
 		(set, get) => ({
 			coffeeOrders: [] as CoffeeItem[],
 
-			addOrUpdateCoffeeOrder: (coffee: Coffee, quantity: number) =>
-				set((state) => {
+			addOrUpdateCoffeeOrder: (coffee: Coffee, quantity: number) => {
+				console.log(
+					`Adding or updating coffee order. coffee: ${coffee.name}, quantity: ${quantity}`
+				);
+				return set((state) => {
+					console.log(coffee, quantity);
 					const exists = state.coffeeOrders.find(
 						(order) => order.coffee.id === coffee.id
 					);
@@ -48,7 +52,8 @@ export const useCoffeeOrders = create<CoffeeOrdersState>()(
 						totalItems: get().getTotalItems(),
 						totalPrice: get().getTotalPrice(),
 					};
-				}),
+				});
+			},
 
 			removeCoffeeOrder: (id: string) =>
 				set((state) => ({

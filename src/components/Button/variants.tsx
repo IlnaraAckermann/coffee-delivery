@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const buttonVariants = tv({
-	base: "items-center gap-2 rounded-md",
+	base: "items-center gap-2 rounded-md flex",
 	variants: {
 		variant: {
 			primary: "bg-yellow hover:bg-yellow-dark text-white",
