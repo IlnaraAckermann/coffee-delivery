@@ -4,7 +4,7 @@ import { Text } from "@components/Text";
 import { useCoffeeOrders } from "../../../contexts/CartContext";
 
 export const CartStatus = () => {
-	const totalItems = useCoffeeOrders((state) => state.totalItems);
+	const { getTotalItems } = useCoffeeOrders();
 	return (
 		<Flex className="bg-yellow-light p-2 rounded-md text-yellow relative">
 			<Flex className="rounded-full bg-yellow absolute -right-2 -top-2 px-1.5">
@@ -12,7 +12,7 @@ export const CartStatus = () => {
 					className="text-yellow-light"
 					variant="text-s"
 				>
-					{totalItems}
+					{getTotalItems()}
 				</Text>
 			</Flex>
 			<ShoppingCartSimpleIcon

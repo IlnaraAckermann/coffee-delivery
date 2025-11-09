@@ -2,25 +2,48 @@ import type { Coffee } from "src/types/coffee.dto";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface CoffeeItem {
+export interface CoffeeItem {
 	coffee: Coffee;
 	quantity: number;
+}
+
+interface Address {
+	zipCode: string;
+	street: string;
+	number: string;
+	complement?: string;
+	neighborhood: string;
+	city: string;
+	state: string;
+}
+
+interface OrderDetails {
+	address: Address;
+	paymentMethod: "credit_card" | "debit_card" | "cash";
 }
 
 export interface CoffeeOrdersState {
 	coffeeOrders: CoffeeItem[];
 	addOrUpdateCoffeeOrder: (coffee: Coffee, quantity: number) => void;
 	removeCoffeeOrder: (id: string) => void;
-	totalPrice: number;
-	totalItems: number;
 	getTotalPrice: () => number;
 	getTotalItems: () => number;
+	getDeliveryFee: () => number;
+	orderDetails?: OrderDetails;
+	setOrderDetails: (details: OrderDetails) => void;
 }
 
 export const useCoffeeOrders = create<CoffeeOrdersState>()(
 	persist(
 		(set, get) => ({
+			orderDetails: undefined,
+
+			setOrderDetails: (details: OrderDetails) =>
+				set(() => ({ orderDetails: details })),
+
 			coffeeOrders: [] as CoffeeItem[],
+
+			getDeliveryFee: () => 3.5,
 
 			addOrUpdateCoffeeOrder: (coffee: Coffee, quantity: number) => {
 				console.log(
@@ -31,6 +54,17 @@ export const useCoffeeOrders = create<CoffeeOrdersState>()(
 					const exists = state.coffeeOrders.find(
 						(order) => order.coffee.id === coffee.id
 					);
+
+					if (quantity <= 0) {
+						const filteredOrders = state.coffeeOrders.filter(
+							(order) => order.coffee.id !== coffee.id
+						);
+						return {
+							coffeeOrders: filteredOrders,
+							totalItems: get().getTotalItems(),
+							totalPrice: get().getTotalPrice(),
+						};
+					}
 
 					if (exists) {
 						const updated = state.coffeeOrders.map((order) =>
@@ -63,8 +97,6 @@ export const useCoffeeOrders = create<CoffeeOrdersState>()(
 					totalItems: get().getTotalItems(),
 					totalPrice: get().getTotalPrice(),
 				})),
-			totalItems: 0,
-			totalPrice: 0,
 			getTotalItems: () => {
 				const state = get();
 				return state.coffeeOrders.reduce(

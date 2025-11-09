@@ -7,26 +7,62 @@ import { TextValue } from "./components/TextValue";
 import { CheckoutCoffeeCard } from "./components/CheckoutCoffeeCard";
 import { GroupSelect } from "@components/SelectGroup";
 import { Button } from "@components/Button";
+import { useCoffeeOrders } from "@contexts/CartContext";
+import { useForm, Controller } from "react-hook-form";
+
+interface PaymentCheckoutFormProps {
+	onSuccess: () => void;
+}
+
+interface CheckoutFormData {
+	cep: string;
+	street: string;
+	number: string;
+	complement?: string;
+	neighborhood: string;
+	city: string;
+	state: string;
+	paymentMethod: "credit_card" | "debit_card" | "cash";
+}
 
 export const PaymentCheckoutForm = ({
 	onSuccess,
-}: {
-	onSuccess: () => void;
-}) => {
-	const handleSubmit = (event: React.FormEvent) => {
-		event.preventDefault();
+}: PaymentCheckoutFormProps) => {
+	const { coffeeOrders, getTotalPrice, getDeliveryFee, setOrderDetails } =
+		useCoffeeOrders();
+
+	const { register, handleSubmit, control } = useForm<CheckoutFormData>({
+		mode: "onSubmit",
+		reValidateMode: "onSubmit",
+		defaultValues: { paymentMethod: "credit_card" },
+	});
+
+	const onSubmit = (data: CheckoutFormData) => {
+		setOrderDetails({
+			address: {
+				zipCode: data.cep,
+				street: data.street,
+				number: data.number,
+				complement: data.complement,
+				neighborhood: data.neighborhood,
+				city: data.city,
+				state: data.state,
+			},
+			paymentMethod: data.paymentMethod,
+		});
 		onSuccess();
 	};
+
 	return (
 		<form
 			id="checkout-form"
 			className="p-10 w-full gap-8 flex flex-col l:flex-row"
-			onSubmit={handleSubmit}
+			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Flex
 				flexDirection="column"
 				gap="lg"
-				className="h-fit grow order-2 l:order-1"
+				className="h-fit grow"
 			>
 				<FieldSet
 					className="h-fit w-full mt-4 "
@@ -53,25 +89,25 @@ export const PaymentCheckoutForm = ({
 						</Text>
 					</Flex>
 					<Input
-						name="cep"
+						{...register("cep", { required: true })}
 						placeholder="CEP"
 						className="l:max-w-[200px]"
 					/>
 					<Input
-						name="street"
+						{...register("street", { required: true })}
 						placeholder="Rua"
 					/>
 					<Flex
 						flexDirection="column"
 						className="sm:flex-row gap-4"
-						flexGrow
+						flexgrow="grow"
 					>
 						<Input
-							name="number"
+							{...register("number", { required: true })}
 							placeholder="Número"
 						/>
 						<Input
-							name="complement"
+							{...register("complement")}
 							placeholder="Complemento"
 							className="sm:w-3/4"
 							isOptional
@@ -80,19 +116,19 @@ export const PaymentCheckoutForm = ({
 					<Flex
 						flexDirection="column"
 						className="sm:flex-row gap-4"
-						flexGrow
+						flexgrow="grow"
 						wrap
 					>
 						<Input
-							name="neighborhood"
+							{...register("neighborhood", { required: true })}
 							placeholder="Bairro"
 						/>
 						<Input
-							name="city"
+							{...register("city", { required: true })}
 							placeholder="Cidade"
 						/>
 						<Input
-							name="state"
+							{...register("state", { required: true })}
 							placeholder="UF"
 						/>
 					</Flex>
@@ -118,30 +154,34 @@ export const PaymentCheckoutForm = ({
 						>
 							O pagamento é feito na entrega. Escolha a forma que deseja pagar
 						</Text>
-
-						<GroupSelect
-							options={[
-								{
-									value: "creditCard",
-									label: "Cartão de crédito",
-									iconProps: { name: "CreditCard" },
-								},
-								{
-									value: "debitCard",
-									label: "Cartão de débito",
-									iconProps: { name: "Bank" },
-								},
-								{
-									value: "cash",
-									label: "Dinheiro",
-									iconProps: { name: "Money" },
-								},
-							]}
+						<Controller
 							name="paymentMethod"
-							onChange={(value) =>
-								console.log("Selected payment method:", value)
-							}
-							classname="mt-8"
+							control={control}
+							render={({ field }) => (
+								<GroupSelect
+									name="paymentMethod"
+									value={field.value}
+									onChange={(val) => field.onChange(val)}
+									options={[
+										{
+											value: "credit_card",
+											label: "Cartão de crédito",
+											iconProps: { name: "CreditCard" },
+										},
+										{
+											value: "debit_card",
+											label: "Cartão de débito",
+											iconProps: { name: "Bank" },
+										},
+										{
+											value: "cash",
+											label: "Dinheiro",
+											iconProps: { name: "Money" },
+										},
+									]}
+									className="mt-8 flex-wrap"
+								/>
+							)}
 						/>
 					</Flex>
 				</FieldSet>
@@ -149,26 +189,28 @@ export const PaymentCheckoutForm = ({
 
 			<FieldSet
 				legend="Cafés selecionados"
-				className="min-w-[450px] mt-4 order-1 l:order-2"
+				className="min-w-[450px] mt-4"
 			>
-				<CheckoutCoffeeCard />
-				<hr className="my-2 border-t border-base-button" />
-				<CheckoutCoffeeCard />
-				<hr className="my-2 border-t border-base-button" />
-				<CheckoutCoffeeCard />
-				<hr className="my-2 border-t border-base-button" />
+				{coffeeOrders &&
+					coffeeOrders.map((coffeeItem) => (
+						<div key={coffeeItem.coffee.id}>
+							<CheckoutCoffeeCard coffeeItem={coffeeItem} />
+							<hr className="my-2 border-t border-base-button" />
+						</div>
+					))}
+
 				<TextValue
 					text="Total de itens"
-					value="R$ 29,70"
+					value={`R$ ${getTotalPrice().toFixed(2)}`}
 					className="mt-4"
 				/>
 				<TextValue
 					text="Entrega"
-					value="R$ 3,50"
+					value={`R$ ${getDeliveryFee().toFixed(2)}`}
 				/>
 				<TextValue
 					text="Total"
-					value="R$ 33,20"
+					value={`R$ ${(getTotalPrice() + getDeliveryFee()).toFixed(2)}`}
 					className="font-bold text-xl"
 				/>
 

@@ -46,9 +46,9 @@ export const flexVariants = tv({
 			md: "m-2",
 			lg: "m-3",
 		},
-		flexGrow: {
-			true: "flex-grow",
-			false: "flex-none",
+		flexgrow: {
+			grow: "flex-grow",
+			none: "flex-none",
 		},
 	},
 	defaultVariants: {
@@ -59,6 +59,6 @@ export const flexVariants = tv({
 		wrap: false,
 		padding: "none",
 		margin: "none",
-		flexGrow: false,
+		flexgrow: "none",
 	},
 });

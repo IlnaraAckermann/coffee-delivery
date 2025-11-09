@@ -3,14 +3,14 @@ import { type IconProps } from "@components/Icon";
 import { Flex } from "@components/Flex";
 import { Select } from "@components/Select";
 
-interface GroupSelectProps {
+interface GroupSelectProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
 	options: { value: string; label: string; iconProps: IconProps }[];
 	name: string;
 	flexDirection?: "row" | "column";
 	value?: string;
 	onChange?: (value: string) => void;
 	defaultValue?: string;
-	classname?: string;
+	className?: string;
 }
 
 export const GroupSelect = ({
@@ -20,7 +20,8 @@ export const GroupSelect = ({
 	value,
 	onChange,
 	defaultValue,
-	classname,
+	className,
+	...props
 }: GroupSelectProps) => {
 	const [internalValue, setInternalValue] = useState(defaultValue || "");
 
@@ -38,7 +39,7 @@ export const GroupSelect = ({
 		<Flex
 			flexDirection={flexDirection}
 			gap="md"
-			className={classname}
+			className={className}
 		>
 			{options.map((option) => (
 				<Select
@@ -47,6 +48,7 @@ export const GroupSelect = ({
 					label={option.label}
 					value={option.value}
 					name={name}
+					{...props}
 					checked={selectedValue === option.value}
 					onChange={handleChange}
 				/>

@@ -2,9 +2,15 @@ import { Button } from "@components/Button";
 import { Flex } from "@components/Flex";
 import { InputNumber } from "@components/InputNumber";
 import { Text } from "@components/Text";
+import { useCoffeeOrders, type CoffeeItem } from "@contexts/CartContext";
 import { TrashIcon } from "@phosphor-icons/react";
 
-export const CheckoutCoffeeCard = () => {
+type CheckoutCoffeeCardProps = {
+	coffeeItem: CoffeeItem;
+};
+
+export const CheckoutCoffeeCard = ({ coffeeItem }: CheckoutCoffeeCardProps) => {
+	const { removeCoffeeOrder, addOrUpdateCoffeeOrder } = useCoffeeOrders();
 	return (
 		<Flex className="p-6 rounded-md gap-4 w-full contain-content">
 			<img
@@ -14,15 +20,26 @@ export const CheckoutCoffeeCard = () => {
 			/>
 			<div className="w-full min-w-fit">
 				<Flex className="justify-between w-full gap-2">
-					<Text>Expresso Tradicional</Text>
-					<Text className="font-bold">R$ 9,90</Text>
+					<Text>{coffeeItem.coffee.name}</Text>
+					<Text className="font-bold">
+						R$ {(coffeeItem.coffee.price * coffeeItem.quantity).toFixed(2)}
+					</Text>
 				</Flex>
 				<Flex gap="md">
-					<InputNumber />
+					<InputNumber
+						value={coffeeItem.quantity}
+						onChange={(value) =>
+							addOrUpdateCoffeeOrder(
+								coffeeItem.coffee,
+								value.target.valueAsNumber
+							)
+						}
+					/>
 					<Button
 						variant="secondary"
 						className="text-sm"
 						icon={<TrashIcon size={16} />}
+						onClick={() => removeCoffeeOrder(coffeeItem.coffee.id)}
 					>
 						REMOVER
 					</Button>

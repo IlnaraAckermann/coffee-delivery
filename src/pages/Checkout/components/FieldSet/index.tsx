@@ -19,7 +19,7 @@ export const FieldSet = ({
 	...props
 }: FieldSetProps) => {
 	const baseClass = tv({
-		base: "bg-base-card p-10 rounded-md flex flex-col gap-4 relative m-0",
+		base: "bg-base-card p-10 rounded-md flex flex-col gap-4 relative m-0 ",
 	});
 	return (
 		<fieldset
