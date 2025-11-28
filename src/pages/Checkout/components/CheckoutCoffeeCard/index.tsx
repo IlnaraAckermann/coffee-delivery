@@ -11,11 +11,13 @@ type CheckoutCoffeeCardProps = {
 
 export const CheckoutCoffeeCard = ({ coffeeItem }: CheckoutCoffeeCardProps) => {
 	const { removeCoffeeOrder, addOrUpdateCoffeeOrder } = useCoffeeOrders();
+	
+const ImageUrl = new URL(`/src/assets/images/${coffeeItem.coffee.image}`, import.meta.url).href;
 	return (
 		<Flex className="p-6 rounded-md gap-4 w-full contain-content">
 			<img
-				src="src/assets/images/arabe.png"
-				alt="Café Arabe"
+				src={ImageUrl}
+				alt={coffeeItem.coffee.name}
 				className="w-16 h-16"
 			/>
 			<div className="w-full min-w-fit">

@@ -1,33 +1,37 @@
 import { Route, Routes } from "react-router-dom";
-import PageComponents from "./pages/PageComponents";
+import { lazy, Suspense } from "react";
 import DefaultLayout from "./layouts/DefaultLayout";
-import { Home } from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Checkout } from "./pages/Checkout/components";
+
+const Home = lazy(() => import("./pages/Home"));
+const Checkout = lazy(() => import("./pages/Checkout/components"));
+const PageComponents = lazy(() => import("./pages/PageComponents"));
 
 const queryClient = new QueryClient();
 export function Router() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Routes>
-				<Route
-					path="/"
-					element={<DefaultLayout />}
-				>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Routes>
 					<Route
 						path="/"
-						element={<Home />}
-					/>
-					<Route
-						path="/components"
-						element={<PageComponents />}
-					/>
-					<Route
-						path="/checkout"
-						element={<Checkout />}
-					/>
-				</Route>
-			</Routes>
+						element={<DefaultLayout />}
+					>
+						<Route
+							path="/"
+							element={<Home />}
+						/>
+						<Route
+							path="/components"
+							element={<PageComponents />}
+						/>
+						<Route
+							path="/checkout"
+							element={<Checkout />}
+						/>
+					</Route>
+				</Routes>
+			</Suspense>
 		</QueryClientProvider>
 	);
 }

@@ -1,7 +1,7 @@
 import CoffeeList from "./components/CoffeeList";
 import { Hero } from "./components/Hero";
 
-export const Home = () => {
+const Home = () => {
 	return (
 		<>
 			<Hero />
@@ -9,3 +9,5 @@ export const Home = () => {
 		</>
 	);
 };
+
+export default Home;

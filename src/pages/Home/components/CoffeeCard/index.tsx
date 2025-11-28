@@ -10,7 +10,7 @@ interface CoffeeCardProps {
 }
 
 const getCoffeeImageUrl = (name: string) => {
-	return `src/assets/images/${name}`;
+	return new URL(`/src/assets/images/${name}`, import.meta.url).href;
 };
 
 export const CoffeeCard = ({ coffee }: CoffeeCardProps) => {
