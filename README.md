@@ -7,6 +7,9 @@
 
 # ☕ Coffee Delivery
 
+<img width="930" height="772" alt="image" src="https://github.com/user-attachments/assets/b86201d7-52f1-41ac-8206-edf74f11f257" />
+
+
 > Projeto de estudos para prática de React, gerenciamento de estado e PWA
 
 Aplicação web de delivery de café desenvolvida como projeto de estudos, baseado no desafio Coffee Delivery da Rocketseat. O projeto implementa um fluxo completo de e-commerce, desde a listagem de produtos até a finalização do pedido.
@@ -71,7 +74,7 @@ O layout foi baseado no design disponível no Figma:
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/coffee-delivery.git
+git clone https://github.com/IlnaraAckermann/coffee-delivery.git
 
 # Entre no diretório
 cd coffee-delivery
